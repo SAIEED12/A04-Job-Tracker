@@ -1,42 +1,317 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Job Application Tracker</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        *{
-            font-family: "Geist", sans-serif;
-        }
-        body{
-            background-color: #F8FAFC;
-        }
+      * {
+        font-family: "Geist", sans-serif;
+      }
+      body {
+        background-color: #f8fafc;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Header -->
-     <header class="w-[80%] mx-auto mt-5">
-        <h1 class="text-[32px] text-[#002C5C] font-bold">Job Application Tracker</h1>
-        <div class="head-container grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
-            <div class="bg-[#FFFFFF] p-5">
-                <p class="text-[#323B49] text-[14px]">Total</p>
-                <p class="text-[#002C5C] font-bold text-2xl">0</p>
-            </div>
-            <div class="bg-[#FFFFFF] p-5">
-                <p class="text-[#323B49] text-[14px]">Interview</p>
-                <p class="text-[#10B981] font-bold text-2xl">0</p>
-            </div>
-            <div class="bg-[#FFFFFF] p-5">
-                <p class="text-[#323B49] text-[14px]">Rejected</p>
-                <p class="text-[#EF4444] font-bold text-2xl">0</p>
-            </div>
+    <header class="w-[80%] mx-auto mt-5">
+      <h1 class="text-[32px] text-[#002C5C] font-bold">
+        Job Application Tracker
+      </h1>
+      <div
+        class="head-container grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4"
+      >
+        <div class="bg-[#FFFFFF] p-5">
+          <p class="text-[#323B49] text-[14px]">Total</p>
+          <p class="text-[#002C5C] font-bold text-2xl">0</p>
         </div>
-     </header>
+        <div class="bg-[#FFFFFF] p-5">
+          <p class="text-[#323B49] text-[14px]">Interview</p>
+          <p class="text-[#10B981] font-bold text-2xl">0</p>
+        </div>
+        <div class="bg-[#FFFFFF] p-5">
+          <p class="text-[#323B49] text-[14px]">Rejected</p>
+          <p class="text-[#EF4444] font-bold text-2xl">0</p>
+        </div>
+      </div>
+    </header>
 
-     <hr class="border-[#E6E7E9] w-[80%] mx-auto mt-[30px]">
+    <hr class="border-[#E6E7E9] w-[80%] mx-auto mt-[30px]" />
 
+    <main class="w-[80%] mx-auto">
+      <h3 class="text-[#002C5C] font-bold mt-5 mb-6">Available Jobs</h3>
 
-    <script src="./script/jobtracker.js"></script>
-</body>
+      <!-- 3 Tabs -->
+      <div class="flex gap-2 mb-4">
+        <button
+          class="text-white text-[12px] bg-[#3B82F6] px-8 py-2 rounded-sm cursor-pointer"
+        >
+          All
+        </button>
+        <button
+          class="text-[#64748B] text-[12px] bg-white px-8 py-2 rounded-sm cursor-pointer"
+        >
+          Interview
+        </button>
+        <button
+          class="text-[#64748B] text-[12px] bg-white px-8 py-2 rounded-sm cursor-pointer"
+        >
+          Rejected
+        </button>
+      </div>
+
+      <!-- Filtered Card  -->
+      <section id="filtered-section"></section>
+
+      <!-- Card -->
+      <section id="card" class="space-y-6">
+        <!-- Card-1 -->
+        <div class="card-container bg-white p-6 flex justify-between">
+          <div class="left">
+            <div>
+              <h3 class="text-[#002C5C] font-semibold text-[18px]">Mobile First Corp</h3>
+              <p class="text-[#64748B] text-[16px] mb-5">React Native Developer</p>
+              <p class="text-[#64748B] text-[14px] mb-5">Remote • Full-time • $130,000 - $175,000</p>
+            </div>
+
+            <!-- Status -->
+            <div class="mb-5">
+                <button class="bg-[#EEF4FF] p-2 text-[14px] mb-2 rounded-sm font-semibold text-[#002C5C]">NOT APPLIED</button>
+                <p class="text-[#323B49] text-[14px]">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+            </div>
+
+            <!-- Buttons -->
+             <div class="flex gap-2">
+                <button class="text-[#10B981] font-semibold border px-2 py-2 rounded-sm cursor-pointer hover:bg-green-600 hover:text-white">INTERVIEW</button>
+                <button class="text-[#EF4444] font-semibold border px-2 py-2 rounded-sm cursor-pointer hover:bg-red-500 hover:text-white">REJECTED</button>
+             </div>
+          </div>
+
+          <div class="right">
+            <button class="cursor-pointer"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="15.5" fill="white" stroke="#F1F2F4"/>
+            <path d="M21.5 11H19V10.5C19 10.1022 18.842 9.72064 18.5607 9.43934C18.2794 9.15804 17.8978 9 17.5 9H14.5C14.1022 9 13.7206 9.15804 13.4393 9.43934C13.158 9.72064 13 10.1022 13 10.5V11H10.5C10.3674 11 10.2402 11.0527 10.1464 11.1464C10.0527 11.2402 10 11.3674 10 11.5C10 11.6326 10.0527 11.7598 10.1464 11.8536C10.2402 11.9473 10.3674 12 10.5 12H11V21C11 21.2652 11.1054 21.5196 11.2929 21.7071C11.4804 21.8946 11.7348 22 12 22H20C20.2652 22 20.5196 21.8946 20.7071 21.7071C20.8946 21.5196 21 21.2652 21 21V12H21.5C21.6326 12 21.7598 11.9473 21.8536 11.8536C21.9473 11.7598 22 11.6326 22 11.5C22 11.3674 21.9473 11.2402 21.8536 11.1464C21.7598 11.0527 21.6326 11 21.5 11ZM14 10.5C14 10.3674 14.0527 10.2402 14.1464 10.1464C14.2402 10.0527 14.3674 10 14.5 10H17.5C17.6326 10 17.7598 10.0527 17.8536 10.1464C17.9473 10.2402 18 10.3674 18 10.5V11H14V10.5ZM20 21H12V12H20V21ZM15 14.5V18.5C15 18.6326 14.9473 18.7598 14.8536 18.8536C14.7598 18.9473 14.6326 19 14.5 19C14.3674 19 14.2402 18.9473 14.1464 18.8536C14.0527 18.7598 14 18.6326 14 18.5V14.5C14 14.3674 14.0527 14.2402 14.1464 14.1464C14.2402 14.0527 14.3674 14 14.5 14C14.6326 14 14.7598 14.0527 14.8536 14.1464C14.9473 14.2402 15 14.3674 15 14.5ZM18 14.5V18.5C18 18.6326 17.9473 18.7598 17.8536 18.8536C17.7598 18.9473 17.6326 19 17.5 19C17.3674 19 17.2402 18.9473 17.1464 18.8536C17.0527 18.7598 17 18.6326 17 18.5V14.5C17 14.3674 17.0527 14.2402 17.1464 14.1464C17.2402 14.0527 17.3674 14 17.5 14C17.6326 14 17.7598 14.0527 17.8536 14.1464C17.9473 14.2402 18 14.3674 18 14.5Z" fill="#64748B"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card-2 -->
+        <div class="card-container bg-white p-6 flex justify-between">
+          <div class="left">
+            <div>
+              <h3 class="text-[#002C5C] font-semibold text-[18px]">WebFlow Agency</h3>
+              <p class="text-[#64748B] text-[16px] mb-5">Web Designer & Developer</p>
+              <p class="text-[#64748B] text-[14px] mb-5">Los Angeles, CA • Part-time • $80,000 - $120,000</p>
+            </div>
+
+            <!-- Status -->
+            <div class="mb-5">
+                <button class="bg-[#EEF4FF] p-2 text-[14px] mb-2 rounded-sm font-semibold text-[#002C5C]">NOT APPLIED</button>
+                <p class="text-[#323B49] text-[14px]">Create stunning web experiences for high-profile clients. Must have portfolio and experience with modern web design trends.</p>
+            </div>
+
+            <!-- Buttons -->
+             <div class="flex gap-2">
+                <button class="text-[#10B981] font-semibold border px-2 py-2 rounded-sm cursor-pointer hover:bg-green-600 hover:text-white">INTERVIEW</button>
+                <button class="text-[#EF4444] font-semibold border px-2 py-2 rounded-sm cursor-pointer hover:bg-red-500 hover:text-white">REJECTED</button>
+             </div>
+          </div>
+
+          <div class="right">
+            <button class="cursor-pointer"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="15.5" fill="white" stroke="#F1F2F4"/>
+            <path d="M21.5 11H19V10.5C19 10.1022 18.842 9.72064 18.5607 9.43934C18.2794 9.15804 17.8978 9 17.5 9H14.5C14.1022 9 13.7206 9.15804 13.4393 9.43934C13.158 9.72064 13 10.1022 13 10.5V11H10.5C10.3674 11 10.2402 11.0527 10.1464 11.1464C10.0527 11.2402 10 11.3674 10 11.5C10 11.6326 10.0527 11.7598 10.1464 11.8536C10.2402 11.9473 10.3674 12 10.5 12H11V21C11 21.2652 11.1054 21.5196 11.2929 21.7071C11.4804 21.8946 11.7348 22 12 22H20C20.2652 22 20.5196 21.8946 20.7071 21.7071C20.8946 21.5196 21 21.2652 21 21V12H21.5C21.6326 12 21.7598 11.9473 21.8536 11.8536C21.9473 11.7598 22 11.6326 22 11.5C22 11.3674 21.9473 11.2402 21.8536 11.1464C21.7598 11.0527 21.6326 11 21.5 11ZM14 10.5C14 10.3674 14.0527 10.2402 14.1464 10.1464C14.2402 10.0527 14.3674 10 14.5 10H17.5C17.6326 10 17.7598 10.0527 17.8536 10.1464C17.9473 10.2402 18 10.3674 18 10.5V11H14V10.5ZM20 21H12V12H20V21ZM15 14.5V18.5C15 18.6326 14.9473 18.7598 14.8536 18.8536C14.7598 18.9473 14.6326 19 14.5 19C14.3674 19 14.2402 18.9473 14.1464 18.8536C14.0527 18.7598 14 18.6326 14 18.5V14.5C14 14.3674 14.0527 14.2402 14.1464 14.1464C14.2402 14.0527 14.3674 14 14.5 14C14.6326 14 14.7598 14.0527 14.8536 14.1464C14.9473 14.2402 15 14.3674 15 14.5ZM18 14.5V18.5C18 18.6326 17.9473 18.7598 17.8536 18.8536C17.7598 18.9473 17.6326 19 17.5 19C17.3674 19 17.2402 18.9473 17.1464 18.8536C17.0527 18.7598 17 18.6326 17 18.5V14.5C17 14.3674 17.0527 14.2402 17.1464 14.1464C17.2402 14.0527 17.3674 14 17.5 14C17.6326 14 17.7598 14.0527 17.8536 14.1464C17.9473 14.2402 18 14.3674 18 14.5Z" fill="#64748B"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card-3 -->
+        <div class="card-container bg-white p-6 flex justify-between">
+          <div class="left">
+            <div>
+              <h3 class="text-[#002C5C] font-semibold text-[18px]">DataViz Solutions</h3>
+              <p class="text-[#64748B] text-[16px] mb-5">Data Visualization Specialist</p>
+              <p class="text-[#64748B] text-[14px] mb-5">Boston, MA • Full-time • $125,000 - $165,000</p>
+            </div>
+
+            <!-- Status -->
+            <div class="mb-5">
+                <button class="bg-[#EEF4FF] p-2 text-[14px] mb-2 rounded-sm font-semibold text-[#002C5C]">NOT APPLIED</button>
+                <p class="text-[#323B49] text-[14px]">Transform complex data into compelling visualizations. Required skills: D3.js, React, and strong analytical thinking.</p>
+            </div>
+
+            <!-- Buttons -->
+             <div class="flex gap-2">
+                <button class="text-[#10B981] font-semibold border px-2 py-2 rounded-sm cursor-pointer hover:bg-green-600 hover:text-white">INTERVIEW</button>
+                <button class="text-[#EF4444] font-semibold border px-2 py-2 rounded-sm cursor-pointer hover:bg-red-500 hover:text-white">REJECTED</button>
+             </div>
+          </div>
+
+          <div class="right">
+            <button class="cursor-pointer"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="15.5" fill="white" stroke="#F1F2F4"/>
+            <path d="M21.5 11H19V10.5C19 10.1022 18.842 9.72064 18.5607 9.43934C18.2794 9.15804 17.8978 9 17.5 9H14.5C14.1022 9 13.7206 9.15804 13.4393 9.43934C13.158 9.72064 13 10.1022 13 10.5V11H10.5C10.3674 11 10.2402 11.0527 10.1464 11.1464C10.0527 11.2402 10 11.3674 10 11.5C10 11.6326 10.0527 11.7598 10.1464 11.8536C10.2402 11.9473 10.3674 12 10.5 12H11V21C11 21.2652 11.1054 21.5196 11.2929 21.7071C11.4804 21.8946 11.7348 22 12 22H20C20.2652 22 20.5196 21.8946 20.7071 21.7071C20.8946 21.5196 21 21.2652 21 21V12H21.5C21.6326 12 21.7598 11.9473 21.8536 11.8536C21.9473 11.7598 22 11.6326 22 11.5C22 11.3674 21.9473 11.2402 21.8536 11.1464C21.7598 11.0527 21.6326 11 21.5 11ZM14 10.5C14 10.3674 14.0527 10.2402 14.1464 10.1464C14.2402 10.0527 14.3674 10 14.5 10H17.5C17.6326 10 17.7598 10.0527 17.8536 10.1464C17.9473 10.2402 18 10.3674 18 10.5V11H14V10.5ZM20 21H12V12H20V21ZM15 14.5V18.5C15 18.6326 14.9473 18.7598 14.8536 18.8536C14.7598 18.9473 14.6326 19 14.5 19C14.3674 19 14.2402 18.9473 14.1464 18.8536C14.0527 18.7598 14 18.6326 14 18.5V14.5C14 14.3674 14.0527 14.2402 14.1464 14.1464C14.2402 14.0527 14.3674 14 14.5 14C14.6326 14 14.7598 14.0527 14.8536 14.1464C14.9473 14.2402 15 14.3674 15 14.5ZM18 14.5V18.5C18 18.6326 17.9473 18.7598 17.8536 18.8536C17.7598 18.9473 17.6326 19 17.5 19C17.3674 19 17.2402 18.9473 17.1464 18.8536C17.0527 18.7598 17 18.6326 17 18.5V14.5C17 14.3674 17.0527 14.2402 17.1464 14.1464C17.2402 14.0527 17.3674 14 17.5 14C17.6326 14 17.7598 14.0527 17.8536 14.1464C17.9473 14.2402 18 14.3674 18 14.5Z" fill="#64748B"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card-4 -->
+        <div class="card-container bg-white p-6 flex justify-between">
+          <div class="left">
+            <div>
+              <h3 class="text-[#002C5C] font-semibold text-[18px]">CloudFirst Inc</h3>
+              <p class="text-[#64748B] text-[16px] mb-5">Backend Developer</p>
+              <p class="text-[#64748B] text-[14px] mb-5">Seattle, WA • Full-time • $140,000 - $190,000</p>
+            </div>
+
+            <!-- Status -->
+            <div class="mb-5">
+                <button class="bg-[#EEF4FF] p-2 text-[14px] mb-2 rounded-sm font-semibold text-[#002C5C]">NOT APPLIED</button>
+                <p class="text-[#323B49] text-[14px]">Design and maintain scalable backend systems using Python and AWS. Work with modern DevOps practices and cloud infrastructure.</p>
+            </div>
+
+            <!-- Buttons -->
+             <div class="flex gap-2">
+                <button class="text-[#10B981] font-semibold border px-2 py-2 rounded-sm cursor-pointer hover:bg-green-600 hover:text-white">INTERVIEW</button>
+                <button class="text-[#EF4444] font-semibold border px-2 py-2 rounded-sm cursor-pointer hover:bg-red-500 hover:text-white">REJECTED</button>
+             </div>
+          </div>
+
+          <div class="right">
+            <button class="cursor-pointer"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="15.5" fill="white" stroke="#F1F2F4"/>
+            <path d="M21.5 11H19V10.5C19 10.1022 18.842 9.72064 18.5607 9.43934C18.2794 9.15804 17.8978 9 17.5 9H14.5C14.1022 9 13.7206 9.15804 13.4393 9.43934C13.158 9.72064 13 10.1022 13 10.5V11H10.5C10.3674 11 10.2402 11.0527 10.1464 11.1464C10.0527 11.2402 10 11.3674 10 11.5C10 11.6326 10.0527 11.7598 10.1464 11.8536C10.2402 11.9473 10.3674 12 10.5 12H11V21C11 21.2652 11.1054 21.5196 11.2929 21.7071C11.4804 21.8946 11.7348 22 12 22H20C20.2652 22 20.5196 21.8946 20.7071 21.7071C20.8946 21.5196 21 21.2652 21 21V12H21.5C21.6326 12 21.7598 11.9473 21.8536 11.8536C21.9473 11.7598 22 11.6326 22 11.5C22 11.3674 21.9473 11.2402 21.8536 11.1464C21.7598 11.0527 21.6326 11 21.5 11ZM14 10.5C14 10.3674 14.0527 10.2402 14.1464 10.1464C14.2402 10.0527 14.3674 10 14.5 10H17.5C17.6326 10 17.7598 10.0527 17.8536 10.1464C17.9473 10.2402 18 10.3674 18 10.5V11H14V10.5ZM20 21H12V12H20V21ZM15 14.5V18.5C15 18.6326 14.9473 18.7598 14.8536 18.8536C14.7598 18.9473 14.6326 19 14.5 19C14.3674 19 14.2402 18.9473 14.1464 18.8536C14.0527 18.7598 14 18.6326 14 18.5V14.5C14 14.3674 14.0527 14.2402 14.1464 14.1464C14.2402 14.0527 14.3674 14 14.5 14C14.6326 14 14.7598 14.0527 14.8536 14.1464C14.9473 14.2402 15 14.3674 15 14.5ZM18 14.5V18.5C18 18.6326 17.9473 18.7598 17.8536 18.8536C17.7598 18.9473 17.6326 19 17.5 19C17.3674 19 17.2402 18.9473 17.1464 18.8536C17.0527 18.7598 17 18.6326 17 18.5V14.5C17 14.3674 17.0527 14.2402 17.1464 14.1464C17.2402 14.0527 17.3674 14 17.5 14C17.6326 14 17.7598 14.0527 17.8536 14.1464C17.9473 14.2402 18 14.3674 18 14.5Z" fill="#64748B"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card-5 -->
+        <div class="card-container bg-white p-6 flex justify-between">
+          <div class="left">
+            <div>
+              <h3 class="text-[#002C5C] font-semibold text-[18px]">Innovation Labs<h3>
+              <p class="text-[#64748B] text-[16px] mb-5">UI/UX Engineer</p>
+              <p class="text-[#64748B] text-[14px] mb-5">Austin, TX • Full-time • $110000 - $150,000</p>
+            </div>
+
+            <!-- Status -->
+            <div class="mb-5">
+                <button class="bg-[#EEF4FF] p-2 text-[14px] mb-2 rounded-sm font-semibold text-[#002C5C]">NOT APPLIED</button>
+                <p class="text-[#323B49] text-[14px]">Create beautiful and functional user interfaces for our suite of products. Strong design skills and frontend development expertise required.</p>
+            </div>
+
+            <!-- Buttons -->
+             <div class="flex gap-2">
+                <button class="text-[#10B981] font-semibold border px-2 py-2 rounded-sm cursor-pointer hover:bg-green-600 hover:text-white">INTERVIEW</button>
+                <button class="text-[#EF4444] font-semibold border px-2 py-2 rounded-sm cursor-pointer hover:bg-red-500 hover:text-white">REJECTED</button>
+             </div>
+          </div>
+
+          <div class="right">
+            <button class="cursor-pointer"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="15.5" fill="white" stroke="#F1F2F4"/>
+            <path d="M21.5 11H19V10.5C19 10.1022 18.842 9.72064 18.5607 9.43934C18.2794 9.15804 17.8978 9 17.5 9H14.5C14.1022 9 13.7206 9.15804 13.4393 9.43934C13.158 9.72064 13 10.1022 13 10.5V11H10.5C10.3674 11 10.2402 11.0527 10.1464 11.1464C10.0527 11.2402 10 11.3674 10 11.5C10 11.6326 10.0527 11.7598 10.1464 11.8536C10.2402 11.9473 10.3674 12 10.5 12H11V21C11 21.2652 11.1054 21.5196 11.2929 21.7071C11.4804 21.8946 11.7348 22 12 22H20C20.2652 22 20.5196 21.8946 20.7071 21.7071C20.8946 21.5196 21 21.2652 21 21V12H21.5C21.6326 12 21.7598 11.9473 21.8536 11.8536C21.9473 11.7598 22 11.6326 22 11.5C22 11.3674 21.9473 11.2402 21.8536 11.1464C21.7598 11.0527 21.6326 11 21.5 11ZM14 10.5C14 10.3674 14.0527 10.2402 14.1464 10.1464C14.2402 10.0527 14.3674 10 14.5 10H17.5C17.6326 10 17.7598 10.0527 17.8536 10.1464C17.9473 10.2402 18 10.3674 18 10.5V11H14V10.5ZM20 21H12V12H20V21ZM15 14.5V18.5C15 18.6326 14.9473 18.7598 14.8536 18.8536C14.7598 18.9473 14.6326 19 14.5 19C14.3674 19 14.2402 18.9473 14.1464 18.8536C14.0527 18.7598 14 18.6326 14 18.5V14.5C14 14.3674 14.0527 14.2402 14.1464 14.1464C14.2402 14.0527 14.3674 14 14.5 14C14.6326 14 14.7598 14.0527 14.8536 14.1464C14.9473 14.2402 15 14.3674 15 14.5ZM18 14.5V18.5C18 18.6326 17.9473 18.7598 17.8536 18.8536C17.7598 18.9473 17.6326 19 17.5 19C17.3674 19 17.2402 18.9473 17.1464 18.8536C17.0527 18.7598 17 18.6326 17 18.5V14.5C17 14.3674 17.0527 14.2402 17.1464 14.1464C17.2402 14.0527 17.3674 14 17.5 14C17.6326 14 17.7598 14.0527 17.8536 14.1464C17.9473 14.2402 18 14.3674 18 14.5Z" fill="#64748B"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card-6 -->
+        <div class="card-container bg-white p-6 flex justify-between">
+          <div class="left">
+            <div>
+              <h3 class="text-[#002C5C] font-semibold text-[18px]">MegaCorp Solutions<h3>
+              <p class="text-[#64748B] text-[16px] mb-5">JavaScript Developer</p>
+              <p class="text-[#64748B] text-[14px] mb-5">New York, NY • Full-time • $130000 - $170,00</p>
+            </div>
+
+            <!-- Status -->
+            <div class="mb-5">
+                <button class="bg-[#EEF4FF] p-2 text-[14px] mb-2 rounded-sm font-semibold text-[#002C5C]">NOT APPLIED</button>
+                <p class="text-[#323B49] text-[14px]">Build enterprise applications with JavaScript and modern frameworks. We offer competitive compensation, health insurance, and professional development opportunities.</p>
+            </div>
+
+            <!-- Buttons -->
+             <div class="flex gap-2">
+                <button class="text-[#10B981] font-semibold border px-2 py-2 rounded-sm cursor-pointer hover:bg-green-600 hover:text-white">INTERVIEW</button>
+                <button class="text-[#EF4444] font-semibold border px-2 py-2 rounded-sm cursor-pointer hover:bg-red-500 hover:text-white">REJECTED</button>
+             </div>
+          </div>
+
+          <div class="right">
+            <button class="cursor-pointer"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="15.5" fill="white" stroke="#F1F2F4"/>
+            <path d="M21.5 11H19V10.5C19 10.1022 18.842 9.72064 18.5607 9.43934C18.2794 9.15804 17.8978 9 17.5 9H14.5C14.1022 9 13.7206 9.15804 13.4393 9.43934C13.158 9.72064 13 10.1022 13 10.5V11H10.5C10.3674 11 10.2402 11.0527 10.1464 11.1464C10.0527 11.2402 10 11.3674 10 11.5C10 11.6326 10.0527 11.7598 10.1464 11.8536C10.2402 11.9473 10.3674 12 10.5 12H11V21C11 21.2652 11.1054 21.5196 11.2929 21.7071C11.4804 21.8946 11.7348 22 12 22H20C20.2652 22 20.5196 21.8946 20.7071 21.7071C20.8946 21.5196 21 21.2652 21 21V12H21.5C21.6326 12 21.7598 11.9473 21.8536 11.8536C21.9473 11.7598 22 11.6326 22 11.5C22 11.3674 21.9473 11.2402 21.8536 11.1464C21.7598 11.0527 21.6326 11 21.5 11ZM14 10.5C14 10.3674 14.0527 10.2402 14.1464 10.1464C14.2402 10.0527 14.3674 10 14.5 10H17.5C17.6326 10 17.7598 10.0527 17.8536 10.1464C17.9473 10.2402 18 10.3674 18 10.5V11H14V10.5ZM20 21H12V12H20V21ZM15 14.5V18.5C15 18.6326 14.9473 18.7598 14.8536 18.8536C14.7598 18.9473 14.6326 19 14.5 19C14.3674 19 14.2402 18.9473 14.1464 18.8536C14.0527 18.7598 14 18.6326 14 18.5V14.5C14 14.3674 14.0527 14.2402 14.1464 14.1464C14.2402 14.0527 14.3674 14 14.5 14C14.6326 14 14.7598 14.0527 14.8536 14.1464C14.9473 14.2402 15 14.3674 15 14.5ZM18 14.5V18.5C18 18.6326 17.9473 18.7598 17.8536 18.8536C17.7598 18.9473 17.6326 19 17.5 19C17.3674 19 17.2402 18.9473 17.1464 18.8536C17.0527 18.7598 17 18.6326 17 18.5V14.5C17 14.3674 17.0527 14.2402 17.1464 14.1464C17.2402 14.0527 17.3674 14 17.5 14C17.6326 14 17.7598 14.0527 17.8536 14.1464C17.9473 14.2402 18 14.3674 18 14.5Z" fill="#64748B"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card-7 -->
+        <div class="card-container bg-white p-6 flex justify-between">
+          <div class="left">
+            <div>
+              <h3 class="text-[#002C5C] font-semibold text-[18px]">StartupXYZ</h3>
+              <p class="text-[#64748B] text-[16px] mb-5">Full Stack Engineer</p>
+              <p class="text-[#64748B] text-[14px] mb-5">Remote • Full-time • $120,000 - $160,000</p>
+            </div>
+
+            <!-- Status -->
+            <div class="mb-5">
+                <button class="bg-[#EEF4FF] p-2 text-[14px] mb-2 rounded-sm font-semibold text-[#002C5C]">NOT APPLIED</button>
+                <p class="text-[#323B49] text-[14px]">Join our fast-growing startup and work on our core platform. Experience with Node.js and React required. Great benefits and equity package included.</p>
+            </div>
+
+            <!-- Buttons -->
+             <div class="flex gap-2">
+                <button class="text-[#10B981] font-semibold border px-2 py-2 rounded-sm cursor-pointer hover:bg-green-600 hover:text-white">INTERVIEW</button>
+                <button class="text-[#EF4444] font-semibold border px-2 py-2 rounded-sm cursor-pointer hover:bg-red-500 hover:text-white">REJECTED</button>
+             </div>
+          </div>
+
+          <div class="right">
+            <button class="cursor-pointer"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="15.5" fill="white" stroke="#F1F2F4"/>
+            <path d="M21.5 11H19V10.5C19 10.1022 18.842 9.72064 18.5607 9.43934C18.2794 9.15804 17.8978 9 17.5 9H14.5C14.1022 9 13.7206 9.15804 13.4393 9.43934C13.158 9.72064 13 10.1022 13 10.5V11H10.5C10.3674 11 10.2402 11.0527 10.1464 11.1464C10.0527 11.2402 10 11.3674 10 11.5C10 11.6326 10.0527 11.7598 10.1464 11.8536C10.2402 11.9473 10.3674 12 10.5 12H11V21C11 21.2652 11.1054 21.5196 11.2929 21.7071C11.4804 21.8946 11.7348 22 12 22H20C20.2652 22 20.5196 21.8946 20.7071 21.7071C20.8946 21.5196 21 21.2652 21 21V12H21.5C21.6326 12 21.7598 11.9473 21.8536 11.8536C21.9473 11.7598 22 11.6326 22 11.5C22 11.3674 21.9473 11.2402 21.8536 11.1464C21.7598 11.0527 21.6326 11 21.5 11ZM14 10.5C14 10.3674 14.0527 10.2402 14.1464 10.1464C14.2402 10.0527 14.3674 10 14.5 10H17.5C17.6326 10 17.7598 10.0527 17.8536 10.1464C17.9473 10.2402 18 10.3674 18 10.5V11H14V10.5ZM20 21H12V12H20V21ZM15 14.5V18.5C15 18.6326 14.9473 18.7598 14.8536 18.8536C14.7598 18.9473 14.6326 19 14.5 19C14.3674 19 14.2402 18.9473 14.1464 18.8536C14.0527 18.7598 14 18.6326 14 18.5V14.5C14 14.3674 14.0527 14.2402 14.1464 14.1464C14.2402 14.0527 14.3674 14 14.5 14C14.6326 14 14.7598 14.0527 14.8536 14.1464C14.9473 14.2402 15 14.3674 15 14.5ZM18 14.5V18.5C18 18.6326 17.9473 18.7598 17.8536 18.8536C17.7598 18.9473 17.6326 19 17.5 19C17.3674 19 17.2402 18.9473 17.1464 18.8536C17.0527 18.7598 17 18.6326 17 18.5V14.5C17 14.3674 17.0527 14.2402 17.1464 14.1464C17.2402 14.0527 17.3674 14 17.5 14C17.6326 14 17.7598 14.0527 17.8536 14.1464C17.9473 14.2402 18 14.3674 18 14.5Z" fill="#64748B"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card-8 -->
+        <div class="card-container bg-white p-6 flex justify-between">
+          <div class="left">
+            <div>
+              <h3 class="text-[#002C5C] font-semibold text-[18px]">TechCorp Industries<h3>
+              <p class="text-[#64748B] text-[16px] mb-5">Senior Frontend Developer</p>
+              <p class="text-[#64748B] text-[14px] mb-5">San Francisco, CA • Full-time • $130,000 - $175,000</p>
+            </div>
+
+            <!-- Status -->
+            <div class="mb-5">
+                <button class="bg-[#EEF4FF] p-2 text-[14px] mb-2 rounded-sm font-semibold text-[#002C5C]">NOT APPLIED</button>
+                <p class="text-[#323B49] text-[14px]">We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects.</p>
+            </div>
+
+            <!-- Buttons -->
+             <div class="flex gap-2">
+                <button class="text-[#10B981] font-semibold border px-2 py-2 rounded-sm cursor-pointer hover:bg-green-600 hover:text-white">INTERVIEW</button>
+                <button class="text-[#EF4444] font-semibold border px-2 py-2 rounded-sm cursor-pointer hover:bg-red-500 hover:text-white">REJECTED</button>
+             </div>
+          </div>
+
+          <div class="right">
+            <button class="cursor-pointer"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="15.5" fill="white" stroke="#F1F2F4"/>
+            <path d="M21.5 11H19V10.5C19 10.1022 18.842 9.72064 18.5607 9.43934C18.2794 9.15804 17.8978 9 17.5 9H14.5C14.1022 9 13.7206 9.15804 13.4393 9.43934C13.158 9.72064 13 10.1022 13 10.5V11H10.5C10.3674 11 10.2402 11.0527 10.1464 11.1464C10.0527 11.2402 10 11.3674 10 11.5C10 11.6326 10.0527 11.7598 10.1464 11.8536C10.2402 11.9473 10.3674 12 10.5 12H11V21C11 21.2652 11.1054 21.5196 11.2929 21.7071C11.4804 21.8946 11.7348 22 12 22H20C20.2652 22 20.5196 21.8946 20.7071 21.7071C20.8946 21.5196 21 21.2652 21 21V12H21.5C21.6326 12 21.7598 11.9473 21.8536 11.8536C21.9473 11.7598 22 11.6326 22 11.5C22 11.3674 21.9473 11.2402 21.8536 11.1464C21.7598 11.0527 21.6326 11 21.5 11ZM14 10.5C14 10.3674 14.0527 10.2402 14.1464 10.1464C14.2402 10.0527 14.3674 10 14.5 10H17.5C17.6326 10 17.7598 10.0527 17.8536 10.1464C17.9473 10.2402 18 10.3674 18 10.5V11H14V10.5ZM20 21H12V12H20V21ZM15 14.5V18.5C15 18.6326 14.9473 18.7598 14.8536 18.8536C14.7598 18.9473 14.6326 19 14.5 19C14.3674 19 14.2402 18.9473 14.1464 18.8536C14.0527 18.7598 14 18.6326 14 18.5V14.5C14 14.3674 14.0527 14.2402 14.1464 14.1464C14.2402 14.0527 14.3674 14 14.5 14C14.6326 14 14.7598 14.0527 14.8536 14.1464C14.9473 14.2402 15 14.3674 15 14.5ZM18 14.5V18.5C18 18.6326 17.9473 18.7598 17.8536 18.8536C17.7598 18.9473 17.6326 19 17.5 19C17.3674 19 17.2402 18.9473 17.1464 18.8536C17.0527 18.7598 17 18.6326 17 18.5V14.5C17 14.3674 17.0527 14.2402 17.1464 14.1464C17.2402 14.0527 17.3674 14 17.5 14C17.6326 14 17.7598 14.0527 17.8536 14.1464C17.9473 14.2402 18 14.3674 18 14.5Z" fill="#64748B"/></svg>
+            </button>
+          </div>
+        </div>
+
+        
+
+      </section>
+    </main>
+
+    <script src="./script/jobTracker.js"></script>
+  </body>
 </html>
