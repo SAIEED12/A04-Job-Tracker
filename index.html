@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        *{
+            font-family: "Geist", sans-serif;
+        }
+        body{
+            background-color: #F8FAFC;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+     <header class="w-[80%] mx-auto mt-5">
+        <h1 class="text-[32px] text-[#002C5C] font-bold">Job Application Tracker</h1>
+        <div class="head-container grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
+            <div class="bg-[#FFFFFF] p-5">
+                <p class="text-[#323B49] text-[14px]">Total</p>
+                <p class="text-[#002C5C] font-bold text-2xl">0</p>
+            </div>
+            <div class="bg-[#FFFFFF] p-5">
+                <p class="text-[#323B49] text-[14px]">Interview</p>
+                <p class="text-[#10B981] font-bold text-2xl">0</p>
+            </div>
+            <div class="bg-[#FFFFFF] p-5">
+                <p class="text-[#323B49] text-[14px]">Rejected</p>
+                <p class="text-[#EF4444] font-bold text-2xl">0</p>
+            </div>
+        </div>
+     </header>
+
+     <hr class="border-[#E6E7E9] w-[80%] mx-auto mt-[30px]">
+
+
+    <script src="./script/jobtracker.js"></script>
+</body>
+</html>
