@@ -17,23 +17,19 @@
   <body>
     <!-- Header -->
     <header class="w-[80%] mx-auto mt-5">
-      <h1 class="text-[32px] text-[#002C5C] font-bold">
-        Job Application Tracker
-      </h1>
-      <div
-        class="head-container grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4"
-      >
+      <h1 class="text-[32px] text-[#002C5C] font-bold">Job Application Tracker</h1>
+      <div class="head-container grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
         <div class="bg-[#FFFFFF] p-5">
           <p class="text-[#323B49] text-[14px]">Total</p>
-          <p class="text-[#002C5C] font-bold text-2xl">0</p>
+          <p id="total" class="text-[#002C5C] font-bold text-2xl">0</p>
         </div>
         <div class="bg-[#FFFFFF] p-5">
           <p class="text-[#323B49] text-[14px]">Interview</p>
-          <p class="text-[#10B981] font-bold text-2xl">0</p>
+          <p id="total-interview" class="text-[#10B981] font-bold text-2xl">0</p>
         </div>
         <div class="bg-[#FFFFFF] p-5">
           <p class="text-[#323B49] text-[14px]">Rejected</p>
-          <p class="text-[#EF4444] font-bold text-2xl">0</p>
+          <p id="total-rejected" class="text-[#EF4444] font-bold text-2xl">0</p>
         </div>
       </div>
     </header>
@@ -41,29 +37,33 @@
     <hr class="border-[#E6E7E9] w-[80%] mx-auto mt-[30px]" />
 
     <main class="w-[80%] mx-auto">
-      <h3 class="text-[#002C5C] font-bold mt-5 mb-6">Available Jobs</h3>
+    <h3 class="text-[#002C5C] font-bold mt-5 mb-6">Available Jobs</h3>
 
       <!-- 3 Tabs -->
       <div class="flex gap-2 mb-4">
-        <button
-          class="text-white text-[12px] bg-[#3B82F6] px-8 py-2 rounded-sm cursor-pointer"
-        >
-          All
-        </button>
-        <button
-          class="text-[#64748B] text-[12px] bg-white px-8 py-2 rounded-sm cursor-pointer"
-        >
-          Interview
-        </button>
-        <button
-          class="text-[#64748B] text-[12px] bg-white px-8 py-2 rounded-sm cursor-pointer"
-        >
-          Rejected
-        </button>
+        <button onclick="toggleButton('all-btn')"  id="all-btn" class="text-white text-[12px] bg-[#3B82F6] px-8 py-2 rounded-sm cursor-pointer">All</button>
+        <button onclick="toggleButton('interview-btn')" id="interview-btn" class="text-[#64748B] text-[12px] bg-white px-8 py-2 rounded-sm cursor-pointer">Interview</button>
+        <button onclick="toggleButton('rejected-btn')" id="rejected-btn" class="text-[#64748B] text-[12px] bg-white px-8 py-2 rounded-sm cursor-pointer">Rejected</button>
       </div>
 
+
+        <!-- No job section -->
+       <section id="no-job" class="hidden">
+        <div class="grid min-h-[450px] place-items-center bg-white mb-[135px]">
+          <div class="flex flex-col justify-center items-center text-center">
+            <img src="./jobs.png" alt="no-jobs" class="mb-5">
+            <h1 class="text-[#002C5C] font-semibold text-[24px] line-he">No jobs available</h1>
+            <p class="text-[#64748B]">Check back soon for new job opportunities</p>
+          </div>
+        </div>
+
+
+       </section>
+
       <!-- Filtered Card  -->
-      <section id="filtered-section"></section>
+      <section id="filtered-cards" class="hidden">
+
+      </section>
 
       <!-- Card -->
       <section id="card" class="space-y-6">
@@ -191,7 +191,7 @@
         <div class="card-container bg-white p-6 flex justify-between">
           <div class="left">
             <div>
-              <h3 class="text-[#002C5C] font-semibold text-[18px]">Innovation Labs<h3>
+              <h3 class="text-[#002C5C] font-semibold text-[18px]">Innovation Labs</h3>
               <p class="text-[#64748B] text-[16px] mb-5">UI/UX Engineer</p>
               <p class="text-[#64748B] text-[14px] mb-5">Austin, TX • Full-time • $110000 - $150,000</p>
             </div>
@@ -221,7 +221,7 @@
         <div class="card-container bg-white p-6 flex justify-between">
           <div class="left">
             <div>
-              <h3 class="text-[#002C5C] font-semibold text-[18px]">MegaCorp Solutions<h3>
+              <h3 class="text-[#002C5C] font-semibold text-[18px]">MegaCorp Solutions</h3>
               <p class="text-[#64748B] text-[16px] mb-5">JavaScript Developer</p>
               <p class="text-[#64748B] text-[14px] mb-5">New York, NY • Full-time • $130000 - $170,00</p>
             </div>
@@ -308,8 +308,9 @@
         </div>
 
         
-
       </section>
+
+
     </main>
 
     <script src="./script/jobTracker.js"></script>
