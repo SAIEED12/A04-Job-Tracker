@@ -174,6 +174,7 @@ function showRejected() {
   if (rejectedList.length === 0) {
     cards.classList.add("hidden");
     noJob.classList.remove("hidden");
+    
   } else {
     noJob.classList.add("hidden");
     filteredcards.innerHTML = "";
