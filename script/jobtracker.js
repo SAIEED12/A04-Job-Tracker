@@ -47,7 +47,6 @@ function toggleButton(id) {
   } else if (id === "rejected-btn") {
     cards.classList.add("hidden");
     filteredcards.classList.remove("hidden");
-    noJob.classList.remove("hidden");
   }
 }
 
@@ -80,6 +79,7 @@ main.addEventListener("click", function (event) {
     if (!interviewExist) {
       interviewList.push(jobInfo);
     }
+    rejectedList = rejectedList.filter((item=> item.companyName !== jobInfo.companyName));
     showInterview();
     count();
   }
@@ -109,6 +109,7 @@ main.addEventListener("click", function (event) {
     if (!rejectExist) {
       rejectedList.push(jobInfo);
     }
+    interviewList = interviewList.filter((item=> item.companyName !== jobInfo.companyName));
     showRejected();
     count();
   }
