@@ -5,6 +5,7 @@ let rejected = document.getElementById("total-rejected");
 let interviewList = [];
 let rejectedList = [];
 
+let currentStatus = "All";
 const allBtn = document.getElementById("all-btn");
 const interviewBtn = document.getElementById("interview-btn");
 const rejectedBtn = document.getElementById("rejected-btn");
@@ -32,6 +33,7 @@ function toggleButton(id) {
   rejectedBtn.classList.remove("bg-[#3B82F6]", "text-white");
 
   const selectBtn = document.getElementById(id);
+  currentStatus = id;
 
   selectBtn.classList.remove("bg-white", "text-[#64748B]");
   selectBtn.classList.add("bg-[#3B82F6]", "text-white");
@@ -47,6 +49,7 @@ function toggleButton(id) {
   } else if (id === "rejected-btn") {
     cards.classList.add("hidden");
     filteredcards.classList.remove("hidden");
+    showRejected();
   }
 }
 
@@ -80,7 +83,9 @@ main.addEventListener("click", function (event) {
       interviewList.push(jobInfo);
     }
     rejectedList = rejectedList.filter((item=> item.companyName !== jobInfo.companyName));
-    showInterview();
+    if(currentStatus === "rejected-btn"){
+      showRejected();
+    }
     count();
   }
   else if (event.target.classList.contains("rejected-btn")) {
@@ -110,7 +115,10 @@ main.addEventListener("click", function (event) {
       rejectedList.push(jobInfo);
     }
     interviewList = interviewList.filter((item=> item.companyName !== jobInfo.companyName));
-    showRejected();
+
+    if(currentStatus === "interview-btn"){
+      showInterview();
+    }
     count();
   }
 
@@ -122,6 +130,7 @@ function showInterview() {
     cards.classList.add("hidden");
     noJob.classList.remove("hidden");
   } else {
+    noJob.classList.add("hidden");
     filteredcards.innerHTML = "";
     for (let i of interviewList) {
       let div = document.createElement("div");
@@ -136,7 +145,7 @@ function showInterview() {
 
             <!-- Status -->
             <div class="mb-5">
-                <button class="not-applied-btn bg-[#EEF4FF] p-2 text-[14px] mb-2 rounded-sm font-semibold text-[#002C5C]">${i.status}</button>
+                <button class="not-applied-btn bg-[#10B981] p-2 text-[14px] mb-2 rounded-sm font-semibold text-white">${i.status}</button>
                 <p class="details text-[#323B49] text-[14px]">Create stunning web experiences for high-profile clients. Must have portfolio and experience with modern web design trends.</p>
             </div>
 
@@ -166,6 +175,7 @@ function showRejected() {
     cards.classList.add("hidden");
     noJob.classList.remove("hidden");
   } else {
+    noJob.classList.add("hidden");
     filteredcards.innerHTML = "";
     for (let j of rejectedList) {
       let div = document.createElement("div");
@@ -180,7 +190,7 @@ function showRejected() {
 
             <!-- Status -->
             <div class="mb-5">
-                <button class="not-applied-btn bg-[#EEF4FF] p-2 text-[14px] mb-2 rounded-sm font-semibold text-[#002C5C]">${j.status}</button>
+                <button class="not-applied-btn bg-[#EF4444] p-2 text-[14px] mb-2 rounded-sm font-semibold text-white">${j.status}</button>
                 <p class="details text-[#323B49] text-[14px]">Create stunning web experiences for high-profile clients. Must have portfolio and experience with modern web design trends.</p>
             </div>
 
