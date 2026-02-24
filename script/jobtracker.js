@@ -5,7 +5,7 @@ let rejected = document.getElementById("total-rejected");
 let interviewList = [];
 let rejectedList = [];
 
-let currentStatus = "All";
+let currentStatus = "all-btn";
 const allBtn = document.getElementById("all-btn");
 const interviewBtn = document.getElementById("interview-btn");
 const rejectedBtn = document.getElementById("rejected-btn");
@@ -15,9 +15,13 @@ let main = document.querySelector("main");
 let cards = document.getElementById("card");
 let filteredcards = document.getElementById("filtered-cards");
 let noJob = document.getElementById("no-job");
+let totalJobs = document.getElementById("total-jobs");
 
 function count() {
   total.innerText = cards.children.length;
+  if(currentStatus === "all-btn"){
+    totalJobs.innerText = `${cards.children.length} jobs`;
+  }
   interview.innerText = interviewList.length;
   rejected.innerText = rejectedList.length;
 }
@@ -39,15 +43,22 @@ function toggleButton(id) {
   selectBtn.classList.remove("bg-white", "text-[#64748B]");
   selectBtn.classList.add("bg-[#3B82F6]", "text-white");
 
-  if (id === "interview-btn") {
-    cards.classList.add("hidden");
-    filteredcards.classList.remove("hidden");
-    showInterview();
-  } else if (id === "all-btn") {
+  if (id === "all-btn") {
     cards.classList.remove("hidden");
     filteredcards.classList.add("hidden");
     noJob.classList.add("hidden");
-  } else if (id === "rejected-btn") {
+    totalJobs.innerText = `${cards.children.length} jobs`;
+
+    if (cards.children.length === 0) {
+        noJob.classList.remove("hidden");
+    }
+
+
+  } else if (id === "interview-btn") {
+    cards.classList.add("hidden");
+    filteredcards.classList.remove("hidden");
+    showInterview();
+  }  else if (id === "rejected-btn") {
     cards.classList.add("hidden");
     filteredcards.classList.remove("hidden");
     showRejected();
@@ -62,8 +73,7 @@ main.addEventListener("click", function (event) {
     const info = parent.querySelector(".info").innerText;
     const notAppliedBtn = parent.querySelector(".not-applied-btn");
     const details = parent.querySelector(".details").innerText;
-    // const interviewBtn  = parent.querySelector(".interview-btn");
-    // const rejectedBtn  = parent.querySelector(".rejected-btn");
+
 
     const jobInfo = {
       companyName,
@@ -75,12 +85,13 @@ main.addEventListener("click", function (event) {
 
     const interviewExist = interviewList.find((item=> item.companyName === jobInfo.companyName));
     parent.querySelector(".not-applied-btn").innerText = "INTERVIEW";
-    notAppliedBtn.classList.remove("bg-[#EEF4FF]", "text-[#002C5C]");
+    notAppliedBtn.classList.remove("bg-[#EEF4FF]", "text-[#002C5C]", "bg-[#EF4444]", "text-white");
     notAppliedBtn.classList.add("bg-[#10B981]", "text-white");
 
     if (!interviewExist) {
       interviewList.push(jobInfo);
     }
+    
     rejectedList = rejectedList.filter((item=> item.companyName !== jobInfo.companyName));
     if(currentStatus === "rejected-btn"){
       showRejected();
@@ -128,35 +139,53 @@ if (deleteBtn) {
     const parent = deleteBtn.closest(".card-container");
     const companyName = parent.querySelector(".company-name").innerText;
 
-    parent.remove();
+    if (currentStatus === "all-btn") {
+        parent.remove();
+        
+        interviewList = interviewList.filter(item=> item.companyName !== companyName);
+        rejectedList = rejectedList.filter(item=> item.companyName !== companyName);
+    } else {
+        const allTabCards = cards.querySelectorAll(".card-container");
+        allTabCards.forEach(card=> {if (card.querySelector(".company-name").innerText === companyName){
+                const statusBtn = card.querySelector(".not-applied-btn");
+                statusBtn.innerText = "NOT APPLIED";
+                statusBtn.className = "not-applied-btn bg-[#EEF4FF] p-2 text-[14px] mb-2 rounded-sm font-semibold text-[#002C5C]";
+            }
+        });
 
-    interviewList = interviewList.filter(item=> item.companyName !== companyName);
-    rejectedList = rejectedList.filter(item=> item.companyName !== companyName);
+        interviewList = interviewList.filter(item => item.companyName !== companyName);
+        rejectedList = rejectedList.filter(item => item.companyName !== companyName);
 
-    if (currentStatus === "interview-btn" && interviewList.length === 0) {
-        noJob.classList.remove("hidden");
-        filteredcards.classList.add("hidden");
-    } else if (currentStatus === "rejected-btn" && rejectedList.length === 0) {
-        noJob.classList.remove("hidden");
-        filteredcards.classList.add("hidden");
+        if(currentStatus==="interview-btn")
+        {
+            showInterview();
+        } 
+        else if(currentStatus==="rejected-btn"){
+          showRejected();
+        } 
     }
 
+    if (cards.children.length === 0) {
+        noJob.classList.remove("hidden");
+    }
     count();
 }
-
+        
 });
 
 function showInterview() {
   filteredcards.innerHTML = "";
+  totalJobs.innerText = `${interviewList.length} of ${cards.children.length} jobs`;
   if (interviewList.length === 0) {
     cards.classList.add("hidden");
     noJob.classList.remove("hidden");
+
   } else {
     noJob.classList.add("hidden");
     filteredcards.innerHTML = "";
     for (let i of interviewList) {
       let div = document.createElement("div");
-      div.className = "card-container bg-white p-6 flex justify-between";
+      div.className = "card-container bg-white p-6 flex justify-between border-l-4 border-[#10B981] shadow-sm";
       div.innerHTML = `
           <div class="left">
             <div>
@@ -193,6 +222,7 @@ function showInterview() {
 
 function showRejected() {
   filteredcards.innerHTML = "";
+  totalJobs.innerText = `${rejectedList.length} of ${cards.children.length} jobs`;
   if (rejectedList.length === 0) {
     cards.classList.add("hidden");
     noJob.classList.remove("hidden");
@@ -202,7 +232,7 @@ function showRejected() {
     filteredcards.innerHTML = "";
     for (let j of rejectedList) {
       let div = document.createElement("div");
-      div.className = "card-container bg-white p-6 flex justify-between";
+      div.className = "card-container bg-white p-6 flex justify-between  border-l-4 border-[#EF4444] shadow-sm";
       div.innerHTML = `
           <div class="left">
             <div>
